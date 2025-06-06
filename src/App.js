@@ -10,31 +10,39 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [locationInfo, setLocationInfo] = useState(null);
 
-  const toggleDarkMode = () => setDarkMode(!darkMode);
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const toggleDarkMode = () => setDarkMode((prev) => !prev);
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   return (
-    <div className={darkMode ? "dark-mode" : ""}>
-      <h1>ACHOU - Buscador de Mapas</h1>
-
-      <button className="toggle-button" onClick={toggleDarkMode}>
-        {darkMode ? "Modo Claro 🌞" : "Modo Escuro 🌙"}
-      </button>
-
-      <button className="toggle-button" onClick={toggleMenu}>
-        {menuOpen ? "Fechar Menu" : "Abrir Menu"}
-      </button>
+    <div className={`app-container ${darkMode ? "dark-mode" : "light-mode"}`}>
+      <header className="app-header">
+        <h1>🌍 ACHOU - Buscador de Mapas</h1>
+        <div className="controls">
+          <button className="toggle-button" onClick={toggleDarkMode}>
+            {darkMode ? "Modo Claro 🌞" : "Modo Escuro 🌙"}
+          </button>
+          <button className="toggle-button" onClick={toggleMenu}>
+            {menuOpen ? "Fechar Menu" : "Abrir Menu"}
+          </button>
+        </div>
+      </header>
 
       <SearchBar onSearch={setSearchQuery} />
-      <MapComponent searchQuery={searchQuery} setLocationInfo={setLocationInfo} />
 
-      <div className={menuOpen ? "side-menu active" : "side-menu"}>
-        <SideMenu
-          darkMode={darkMode}
-          toggleDarkMode={toggleDarkMode}
-          locationInfo={locationInfo}
-        />
-      </div>
+      <MapComponent
+        searchQuery={searchQuery}
+        setLocationInfo={setLocationInfo}
+      />
+
+      {menuOpen && (
+        <div className="side-menu">
+          <SideMenu
+            darkMode={darkMode}
+            toggleDarkMode={toggleDarkMode}
+            locationInfo={locationInfo}
+          />
+        </div>
+      )}
     </div>
   );
 }

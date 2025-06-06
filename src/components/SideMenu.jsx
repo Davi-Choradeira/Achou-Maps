@@ -3,22 +3,16 @@ import "../styles.css";
 
 const SideMenu = ({ darkMode, toggleDarkMode, locationInfo }) => {
   return (
-    <div className="side-menu active">
-      <h2>Configurações</h2>
-      <button className="menu-button" onClick={toggleDarkMode}>
-        {darkMode ? "Modo Claro 🌞" : "Modo Escuro 🌙"}
-      </button>
-
-      <hr />
-
+    <div className="side-menu-content">
+      <h2>📍 Informações</h2>
       {locationInfo ? (
-        <div className="location-info">
-          <h3>Local Buscado</h3>
-          <p><strong>Endereço:</strong> {locationInfo.address || "Não disponível"}</p>
-          <p><strong>Coordenadas:</strong> {locationInfo.lat}, {locationInfo.lon}</p>
+        <div>
+          <p><strong>Endereço:</strong> {locationInfo.address}</p>
+          <p><strong>Latitude:</strong> {locationInfo.lat}</p>
+          <p><strong>Longitude:</strong> {locationInfo.lon}</p>
         </div>
       ) : (
-        <p className="placeholder-text">Busque um local para ver detalhes!</p>
+        <p>Nenhuma localização selecionada.</p>
       )}
     </div>
   );

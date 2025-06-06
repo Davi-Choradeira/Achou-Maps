@@ -6,18 +6,19 @@ const SearchBar = ({ onSearch }) => {
 
   const handleSearch = () => {
     if (query.trim()) {
-      onSearch(query);
+      onSearch(query.trim());
     }
   };
 
   return (
-    <div className="search-container fade-in">
+    <div className="search-container">
       <input
         type="text"
         className="search-input"
         placeholder="Digite um endereço ou local..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && handleSearch()}
       />
       <button className="search-button" onClick={handleSearch}>
         Buscar

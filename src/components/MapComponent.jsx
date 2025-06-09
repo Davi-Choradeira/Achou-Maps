@@ -4,9 +4,10 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { debounce } from "lodash";
 
-const customIcon = L.icon({
-  iconUrl: "/local-icon.png",
-  iconSize: [38, 38],
+
+const neonIcon = L.divIcon({
+  className: "marker-neon",
+  iconSize: [24, 24],
 });
 
 const MoveMap = ({ position }) => {
@@ -34,7 +35,6 @@ const MapComponent = ({ searchQuery, setLocationInfo }) => {
         (err) => console.error("Erro de geolocalização:", err),
         { enableHighAccuracy: true }
       );
-
       return () => navigator.geolocation.clearWatch(watcher);
     }
   }, []);
@@ -43,9 +43,7 @@ const MapComponent = ({ searchQuery, setLocationInfo }) => {
     const fetchLocation = debounce(() => {
       if (searchQuery) {
         setLoading(true);
-        fetch(
-          `https://nominatim.openstreetmap.org/search?format=json&q=${searchQuery}`
-        )
+        fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${searchQuery}`)
           .then((res) => res.json())
           .then((data) => {
             if (data?.length > 0) {
@@ -72,7 +70,7 @@ const MapComponent = ({ searchQuery, setLocationInfo }) => {
       {loading && <div className="loading-overlay">Buscando localização...</div>}
       <MapContainer center={position} zoom={12} style={{ width: "100%", height: "400px" }}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <Marker position={position} icon={customIcon} />
+        <Marker position={position} icon={neonIcon} />
         <MoveMap position={position} />
       </MapContainer>
     </div>

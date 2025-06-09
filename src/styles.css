@@ -1,6 +1,6 @@
 :root {
-  --blue-accent: #00c3ff;
-  --blue-hover: #009ecb;
+  --blue-accent: #00f7ff;
+  --blue-hover: #00b3c8;
   --dark-bg: #0b0c10;
   --dark-text: #ffffff;
   --light-bg: #ffffff;
@@ -15,9 +15,9 @@ body {
   background-color: var(--background);
   color: var(--text);
   transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
 }
 
-/* Temas */
 .dark-mode {
   --background: var(--dark-bg);
   --text: var(--dark-text);
@@ -30,20 +30,21 @@ body {
   --accent: var(--accent-light);
 }
 
-/* Header */
 .app-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: var(--accent);
   padding: 20px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 20px rgba(0, 255, 255, 0.3);
+  backdrop-filter: blur(6px);
 }
 
 .app-header h1 {
   margin: 0;
   font-size: 1.8rem;
   letter-spacing: 1px;
+  text-shadow: 0 0 5px var(--blue-accent);
 }
 
 .controls {
@@ -54,18 +55,19 @@ body {
 .toggle-button {
   background-color: var(--blue-accent);
   color: white;
-  border: none;
+  border: 1px solid var(--blue-hover);
   padding: 10px 16px;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px var(--blue-accent);
 }
 
 .toggle-button:hover {
   background-color: var(--blue-hover);
+  box-shadow: 0 0 15px var(--blue-hover);
 }
 
-/* Search bar */
 .search-container {
   display: flex;
   justify-content: center;
@@ -76,13 +78,17 @@ body {
   padding: 12px;
   width: 320px;
   border-radius: 12px 0 0 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #00c3ff99;
+  background-color: #11131a;
+  color: var(--text);
   outline: none;
   transition: border-color 0.3s;
+  box-shadow: inset 0 0 8px rgba(0, 255, 255, 0.2);
 }
 
 .search-input:focus {
   border-color: var(--blue-accent);
+  box-shadow: 0 0 10px var(--blue-accent);
 }
 
 .search-button {
@@ -92,21 +98,22 @@ body {
   border: none;
   border-radius: 0 12px 12px 0;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 10px var(--blue-accent);
 }
 
 .search-button:hover {
   background-color: var(--blue-hover);
+  box-shadow: 0 0 15px var(--blue-hover);
 }
 
-/* Animação sutil de fundo */
 body::before {
   content: "";
   position: fixed;
   top: 0; left: 0;
   width: 100vw;
   height: 100vh;
-  background: radial-gradient(circle, rgba(0, 255, 255, 0.04) 10%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.05) 10%, transparent 70%);
   animation: float 12s infinite ease-in-out;
   pointer-events: none;
   z-index: -1;
@@ -117,14 +124,13 @@ body::before {
   50% { transform: translateY(20px); }
 }
 
-/* Mapa */
 .map-wrapper {
   position: relative;
   max-width: 100%;
   margin: 0 auto;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  box-shadow: 0 0 25px rgba(0,255,255,0.25);
 }
 
 .loading-overlay {
@@ -141,9 +147,9 @@ body::before {
   align-items: center;
   justify-content: center;
   z-index: 999;
+  text-shadow: 0 0 10px cyan;
 }
 
-/* Menu lateral */
 .side-menu {
   position: fixed;
   top: 80px;
@@ -153,11 +159,12 @@ body::before {
   background: var(--accent);
   color: var(--text);
   padding: 20px;
-  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+  box-shadow: -2px 0 15px rgba(0,255,255,0.3);
   transition: transform 0.4s ease-in-out;
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
   z-index: 1000;
+  backdrop-filter: blur(6px);
 }
 
 .side-menu-content {
@@ -170,9 +177,9 @@ body::before {
   margin-bottom: 15px;
   font-size: 1.4rem;
   color: var(--blue-accent);
+  text-shadow: 0 0 5px var(--blue-accent);
 }
 
-/* Responsivo */
 @media (max-width: 768px) {
   .search-input {
     width: 200px;
@@ -189,5 +196,32 @@ body::before {
   .app-header {
     flex-direction: column;
     gap: 10px;
+  }
+}
+.neon-marker .pulse-marker {
+  width: 24px;
+  height: 24px;
+  background-color: #00f7ff;
+  border: 2px solid #00e1ff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+    box-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.5;
+    box-shadow: 0 0 15px #00f7ff, 0 0 30px #00f7ff;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+    box-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff;
   }
 }

@@ -5,7 +5,7 @@
   --dark-text: #ffffff;
   --light-bg: #ffffff;
   --light-text: #000000;
-  --accent-dark: #1f2833;
+  --accent-dark: #1f2e33;
   --accent-light: #f1f1f1;
 }
 
@@ -89,6 +89,43 @@ body {
 .search-input:focus {
   border-color: var(--blue-accent);
   box-shadow: 0 0 10px var(--blue-accent);
+}
+
+.search-input::placeholder {
+  color: var(--text);
+  opacity: 0.6;
+}
+
+input[type="text"],
+input[type="search"] {
+  color: var(--text);
+  background-color: var(--background);
+}
+
+/* Ajuste para sugestões de busca */
+.search-results {
+  background-color: var(--accent);
+  color: var(--text);
+  border: 1px solid var(--blue-accent);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.search-results li {
+  color: var(--text);
+  padding: 8px;
+  cursor: pointer;
+}
+
+.search-results li:hover {
+  background-color: var(--blue-hover);
+  color: white;
+}
+
+/* Ajuste para datalist */
+datalist option {
+  background-color: var(--accent);
+  color: var(--text);
 }
 
 .search-button {
@@ -198,6 +235,7 @@ body::before {
     gap: 10px;
   }
 }
+
 .neon-marker .pulse-marker {
   width: 24px;
   height: 24px;

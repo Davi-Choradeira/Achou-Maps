@@ -16,13 +16,13 @@ function App() {
   return (
     <div className={`app-container ${darkMode ? "dark-mode" : "light-mode"}`}>
       <header className="app-header">
-        <h1>🌍 ACHOU - Buscador de Mapas</h1>
+        <h1>🌍 ACHOU Mapas </h1>
         <div className="controls">
           <button className="toggle-button" onClick={toggleDarkMode}>
-            {darkMode ? "Modo Claro 🌞" : "Modo Escuro 🌙"}
+            {darkMode ? "🌞" : "🌙"}
           </button>
           <button className="toggle-button" onClick={toggleMenu}>
-            {menuOpen ? "Fechar Menu" : "Abrir Menu"}
+            {menuOpen ? "Menu Fechar" : "Menu"}
           </button>
         </div>
       </header>
